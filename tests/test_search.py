@@ -1,12 +1,14 @@
 import sys
 
+from Searching.BinarySearchST import BinarySearchST
+from Searching.BST import BST
+from Searching.SeparateChainingHashST import SeparateChainingHashST
 from Searching.SequentialSearchST import SequentialSearchST
 from stdlib import stdio
 from stdlib.StdIn import InStream
 
 
-def test_bahavior():
-    st = SequentialSearchST()
+def test_bahavior(st):
     val = 0
 
     while not stdio.isEmpty():
@@ -14,15 +16,13 @@ def test_bahavior():
         st.put(k, val)
         val += 1
 
-    # print(st)
     for key in st.keys():
         print(key, st.get(key))
 
 
-def test_performance():
+def test_performance(st):
     minlen = int(sys.argv[1])
 
-    st = SequentialSearchST()
     while not stdio.isEmpty():
         word = stdio.readString()
         if len(word) < minlen:
@@ -42,5 +42,9 @@ def test_performance():
 
 
 if __name__ == "__main__":
-    # test_bahavior()
-    test_performance()
+    # st = SequentialSearchST()
+    # st = BinarySearchST(60)
+    # st = BST()
+    st = SeparateChainingHashST(97)
+    test_bahavior(st)
+    # test_performance(st)
