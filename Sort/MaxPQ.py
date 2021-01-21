@@ -30,7 +30,7 @@ class ArrayMaxPQ:
         if self.N > 0 and self.N == len(self.a) // 4:
             self.resize(len(self.a) // 2)
         return item
-    
+
     def exch(self, a, i, j):
         tmp = a[i]
         a[i] = a[j]
@@ -41,7 +41,7 @@ class ArrayMaxPQ:
 
     def size(self):
         return self.N
-    
+
     def resize(self, max: int):
         tmp = [None] * max
         for i in range(self.N):
@@ -79,12 +79,14 @@ class MaxPQ:
             k = k // 2
 
     def sink(self, k):
-        while 2*k <= self.N:
-            j = 2*k
-            if j < self.N and self.less(j, j+1):
+        while 2 * k <= self.N:
+            j = 2 * k
+            if j < self.N and self.less(j, j + 1):
                 j += 1
             if self.less(k, j):
                 self.exch(k, j)
+            else:
+                break
             k = j
 
     def exch(self, i, j):
