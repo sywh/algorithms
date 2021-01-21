@@ -1,11 +1,13 @@
 import sys
 
-from Graph.Graph import Graph
-from Graph.DepthFirstSearch import DepthFirstSearch
-from Graph.DepthFirstPaths import DepthFirstPaths
-from Graph.DepthFirstPaths import DepthFirstPathsIterative
 from Graph.BreadthFirstPaths import BreadthFirstPaths
 from Graph.CC import CC
+from Graph.DepthFirstPaths import DepthFirstPaths, DepthFirstPathsIterative
+from Graph.DepthFirstSearch import DepthFirstSearch
+from Graph.EdgeWeightedGraph import EdgeWeightedGraph
+from Graph.Graph import Graph
+from Graph.LazyPrimMST import LazyPrimMST
+from Graph.PrimMST import PrimMST
 from stdlib.StdIn import InStream
 
 
@@ -93,11 +95,23 @@ def test_cc():
         print(s)
 
 
+def test_mst():
+    graph = EdgeWeightedGraph()
+    inStream = InStream(sys.argv[1])
+    graph.from_stream(inStream)
+
+    # mst = LazyPrimMST(graph)
+    mst = PrimMST(graph)
+    for e in mst.edges():
+        print(e)
+    print(mst.weight())
+
+
 if __name__ == "__main__":
     # test_graph()
     # test_depth_first_search()
     # test_depth_first_path()
     # test_depth_first_path_iterative()
     # test_breadth_first_path()
-    test_cc()
-
+    # test_cc()
+    test_mst()

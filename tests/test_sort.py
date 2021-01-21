@@ -1,6 +1,7 @@
 import sys
 
 from Fundamentals.Transaction import Transaction
+from Sort.IndexMinPQ import IndexMinPQ
 from Sort.Insertion import Insertion
 from Sort.MaxPQ import MaxPQ
 from Sort.Merge import Merge, MergeBU
@@ -70,10 +71,37 @@ def test_maxPQ():
         print(i)
 
 
+def test_indexMinPQ():
+    def merge(streams):
+        N = len(streams)
+        pq = IndexMinPQ(N)
+        for i in range(N):
+            if not streams[i].isEmpty():
+                pq.insert(i, streams[i].readString())
+
+        lst = []
+        while not pq.isEmpty():
+            lst.append(pq.min())
+            i = pq.delMin()
+
+            if not streams[i].isEmpty():
+                pq.insert(
+                    i, streams[i].readString()
+                )  # without delMin, it can be used as update
+        print(lst)
+
+    N = len(sys.argv) - 1
+    streams = []
+    for i in range(N):
+        streams.append(InStream(sys.argv[i + 1]))
+    merge(streams)
+
+
 if __name__ == "__main__":
     # test_selection()
     # test_insertion()
     # test_sortCompare()
     # test_merge()
     # test_mergeBU()
-    test_maxPQ()
+    # test_maxPQ()
+    test_indexMinPQ()

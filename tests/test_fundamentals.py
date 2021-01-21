@@ -2,7 +2,9 @@ import sys
 
 from Fundamentals.Accumulator import Accumulator, VisualAccumulator
 from Fundamentals.Bag import Bag
+from Fundamentals.UF import UF
 from stdlib import stdrandom
+from stdlib.StdIn import InStream
 
 
 def test_bag():
@@ -38,7 +40,22 @@ def test_visual_accumulator():
     print(accumulator)
 
 
+def test_uf():
+    instream = InStream()
+    N = instream.readInt()
+    uf = UF(N)
+    while not instream.isEmpty():
+        p = instream.readInt()
+        q = instream.readInt()
+        if uf.connected(p, q):
+            continue
+        uf.union(p, q)
+        print(p, " ", q)
+    print(uf.count(), "components")
+
+
 if __name__ == "__main__":
     # test_bag()
     # test_accumulator()
-    test_visual_accumulator()
+    # test_visual_accumulator()
+    test_uf()
