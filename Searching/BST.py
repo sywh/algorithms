@@ -150,7 +150,7 @@ class BST:
         return node
 
     def deleteMax(self):
-        self.root = self._delete(self.root)
+        self.root = self._deleteMax(self.root)
 
     def _deleteMax(self, node):
         if node.right == None:
@@ -178,7 +178,7 @@ class BST:
                 return node.left
             t = node
             node = self._min(node.right)
-            node.left = node.left
+            node.left = t.left
             node.right = self._deleteMin(t.right)
 
         node.N = self._size(node.left) + self._size(node.right) + 1
@@ -196,10 +196,10 @@ class BST:
         if node == None:
             return
 
-        # quite interesting!
+        # quite interesting! it is exactly inorder traversal
         if node.key > lo:
             self.node_keys(node.left, queue, lo, hi)
-        if node.key < hi:
-            self.node_keys(node.right, queue, lo, hi)
         if node.key >= lo and node.key <= hi:
             queue.append(node.key)
+        if node.key < hi:
+            self.node_keys(node.right, queue, lo, hi)

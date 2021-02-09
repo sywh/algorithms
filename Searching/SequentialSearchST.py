@@ -50,11 +50,13 @@ class SequentialSearchST:
 
         if node.key == key:
             self.first = next
+            self._size -= 1
             return
 
         while next:
             if next.key == key:
                 node.next = next.next
+                self._size -= 1
                 return
             node = next
             next = next.next

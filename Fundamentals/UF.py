@@ -9,9 +9,9 @@ class UF:
 
         if pID == qID:
             return
-        
+
         for i in range(len(self.id)):
-            if self.id[i] = pID:
+            if self.id[i] == pID:
                 self.id[i] = qID
         self._count -= 1
 
