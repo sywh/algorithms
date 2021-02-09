@@ -1,8 +1,9 @@
 import sys
 
-from Fundamentals.Accumulator import Accumulator, VisualAccumulator
+# from Fundamentals.Accumulator import Accumulator, VisualAccumulator
 from Fundamentals.Bag import Bag
 from Fundamentals.UF import UF
+from Fundamentals.WeightedQuickUnionUF import WeightedQuickUnionUF
 from stdlib import stdrandom
 from stdlib.StdIn import InStream
 
@@ -41,7 +42,7 @@ def test_visual_accumulator():
 
 
 def test_uf():
-    instream = InStream()
+    instream = InStream(sys.argv[1])
     N = instream.readInt()
     uf = UF(N)
     while not instream.isEmpty():

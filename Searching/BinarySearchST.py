@@ -95,7 +95,7 @@ class BinarySearchST:
         del self._keys[-1]
         del self._vals[-1]
 
-    def _size(self, lo, hi):
+    def _size(self, lo, hi):  # TODO: fix bug
         return self.rank(hi) - self.rank(lo)
 
     def range_keys(self, lo, hi):

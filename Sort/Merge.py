@@ -25,7 +25,7 @@ class Merge(Example):
 
         i, j = lo, mid + 1
         for k in range(lo, hi + 1):
-            if i > mid:
+            if i > mid:  # if, elif, elif, else(right), not if, if, if, if(wrong)
                 a[k] = self.aux[j]
                 j += 1
             elif j > hi:

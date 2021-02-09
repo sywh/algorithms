@@ -14,7 +14,7 @@ class LazyPrimMST:
             e = self.pq.delMin()  # get edge with min weight
             v = e.either()
             w = e.other(v)
-            if self.marked[v] and self.marked[w]:  # skip invalide edge
+            if self.marked[v] and self.marked[w]:  # skip(delete) invalide edge
                 continue
             self.mst.append(e)
 

@@ -5,7 +5,7 @@ class BoyerMoore:
         R = 256
         self.right = [-1 for _ in range(R)]  # char not in pat -> -1
         for j in range(M):
-            self.right[pat[j]] = j  # char in pat, rightmost pos of char
+            self.right[pat[j]] = j  # rightmost pos of char pat[j]
 
     def search(self, txt):
         N = len(txt)

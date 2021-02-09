@@ -2,12 +2,17 @@ import sys
 
 from Graph.BreadthFirstPaths import BreadthFirstPaths
 from Graph.CC import CC
+from Graph.Cycle import Cycle
+from Graph.DegreeOfSeparation import degreeOfSeparation
 from Graph.DepthFirstPaths import DepthFirstPaths, DepthFirstPathsIterative
 from Graph.DepthFirstSearch import DepthFirstSearch
 from Graph.EdgeWeightedGraph import EdgeWeightedGraph
 from Graph.Graph import Graph
 from Graph.LazyPrimMST import LazyPrimMST
 from Graph.PrimMST import PrimMST
+from Graph.SymbolGraph import SymbolGraph
+from Graph.TwoColor import TwoColor
+from stdlib import stdio
 from stdlib.StdIn import InStream
 
 
@@ -95,6 +100,42 @@ def test_cc():
         print(s)
 
 
+def test_cycle():
+    graph = Graph()
+    instream = InStream(sys.argv[1])
+    graph.from_stream(instream)
+
+    cycle = Cycle(graph)
+    print("graph", graph)
+    print("graph hasCycle is {}".format(cycle.hasCycle()))
+
+
+def test_twoColor():
+    graph = Graph()
+    instream = InStream(sys.argv[1])
+    graph.from_stream(instream)
+
+    color = TwoColor(graph)
+    print("graph", graph)
+    print("graph isTwoColorable is {}".format(color.isBipartite()))
+
+
+def test_symbolGraph():
+    filename = sys.argv[1]
+    delim = sys.argv[2]
+    sg = SymbolGraph(filename, delim)
+    G = sg.G()
+
+    while stdio.hasNextLine():
+        source = stdio.readLine()
+        for w in G.adj(sg.index(source)):
+            print("   " + sg.name(w))
+
+
+def test_degreeOfSeparation():
+    degreeOfSeparation(sys.argv[1:])
+
+
 def test_mst():
     graph = EdgeWeightedGraph()
     inStream = InStream(sys.argv[1])
@@ -114,4 +155,8 @@ if __name__ == "__main__":
     # test_depth_first_path_iterative()
     # test_breadth_first_path()
     # test_cc()
-    test_mst()
+    # test_cycle()
+    # test_twoColor()
+    # test_symbolGraph()
+    test_degreeOfSeparation()
+    # test_mst()

@@ -1,6 +1,8 @@
-from Graph.EdgeWeightedGraph import EdgeWeightedGraph
-from Sort.MinPQ import MinPQ
 from Fundamentals.WeightedQuickUnionUF import WeightedQuickUnionUF as UF
+from Sort.MinPQ import MinPQ
+
+from Graph.EdgeWeightedGraph import EdgeWeightedGraph
+
 
 class KruskalMST:
     def __init__(self, G: EdgeWeightedGraph):
